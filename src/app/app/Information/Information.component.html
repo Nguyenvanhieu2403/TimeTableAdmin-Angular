@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="information col-md-12" id="information">
+    <div class="account row">
+        <div class="account__acc col-md-12">
+            <h1 class="account__acc--info">Thông tin tài khoản</h1>
+        </div>
+        <div class="account__infor col-md-12">
+            <div class="account__infor--username row float-left">
+                <h2 class="account__infor--username__text">Tên đăng nhập</h2>
+                <input  pInputText  id="username"  [disabled]="true"   [(ngModel)]="userName" />
+            </div>
+            <div class="account__infor--password row float-left">
+                <h2 class="account__infor--password__text">Mật khẩu</h2>
+                <input pInputText id="passWord"  [disabled]="true" [(ngModel)]="passWord">
+            </div>
+            <div class="account__infor--fullname row float-left">
+                <h2 class="account__infor--fullname__text">Họ tên</h2>
+                <input  [(ngModel)]="fullName" pInputText [disabled]="true" >
+            </div>
+            <div class="account__infor--list row float-left">
+              <div class="infor__list--birth col-md-5 float-left">
+                  <h2 class="infor__list--birth__text">Ngày sinh</h2>
+                  <input pInputText [disabled]="true" [(ngModel)]="dateOfBirth" >
+              </div>
+              <div class="col-md-2"></div>
+              <div class="infor__list--gender col-md-5 float-left">
+                  <h2 class="infor__list--gender__text">Giới tính</h2>
+                  <input pInputText [disabled]="true" [(ngModel)]="Gender">
+              </div>
+            </div>
+            <div class="account__infor--email row float-left">
+                <h2 class="account__infor--email__text">Email</h2>
+                <input pInputText [(ngModel)]="emailFill" [disabled]="true">
+            </div>
+        </div>
+    </div>
+  </div>
+</div>

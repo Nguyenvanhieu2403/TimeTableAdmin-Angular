@@ -1,0 +1,41 @@
+.information {
+    background-color: #fff;
+    /* width: 100%; */
+}
+
+.account {
+    color: black
+}
+
+.account__acc--info {
+    margin-top: 30px;
+}
+
+.account__infor {
+    background-color: #ccc;
+    /* width: 1000px; */
+    height: 100%;
+    margin-top: 20px;
+    /* margin: 0 70px; */
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.account__infor--username,
+.account__infor--password,
+.account__infor--fullname,
+.account__infor--list,
+.account__infor--email  {
+    width: 100%;
+}
+
+.infor__list--birth input,
+.infor__list--gender input,
+.infor__list--firstName input,
+.infor__list--lastName input  {
+    width: 100%;
+}

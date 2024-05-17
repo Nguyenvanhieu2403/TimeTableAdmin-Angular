@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="information col-md-12" id="information">
+    <div class="account row">
+      <div class="account__acc col-md-12">
+          <h1 class="account__acc--info">Sửa thông tin tài khoản</h1>
+      </div>
+      <div class="account__infor col-md-12">
+        <div class="account__infor--list row float-left">
+          <div class="infor__list--firstName col-md-5 float-left">
+              <h2 class="infor__list--firstName__text">First Name</h2>
+              <input pInputText class="ng-invalid ng-dirty" [(ngModel)]="firstName" >
+          </div>
+          <div class="col-md-2"></div>
+          <div class="infor__list--lastName col-md-5 float-left">
+              <h2 class="infor__list--lastName__text">Last Name</h2>
+              <input pInputText class="ng-invalid ng-dirty" [(ngModel)]="lastName">
+          </div>
+        </div>
+        <div class="account__infor--list row float-left">
+          <div class="infor__list--birth col-md-5 float-left">
+              <h2 class="infor__list--birth__text">Ngày sinh</h2>
+              <input pInputText class="ng-invalid ng-dirty" [(ngModel)]="dateOfBirth" >
+          </div>
+          <div class="col-md-2"></div>
+          <div class="infor__list--gender col-md-5 float-left">
+              <h2 class="infor__list--gender__text">Giới tính</h2>
+              <input pInputText class="ng-invalid ng-dirty" [(ngModel)]="Gender">
+          </div>
+        </div>
+        <div class="account__infor--email row float-left">
+            <h2 class="account__infor--email__text">Avata</h2>
+            <input class="ng-invalid ng-dirty" pInputText [(ngModel)]="Avatar">
+        </div>
+        <button  pButton  pRipple  label="Submit"  class="p-button-primary mt-3" (click)="Save()"> </button>
+      </div>
+    </div>
+  </div>
+</div>
