@@ -1,3 +1,185 @@
-<p>
-  ManagerClass works!
-</p>
+<div class=" Schedule" id="Schedule">
+  <div class="schedule__body row">
+      <div class="col-md-9">
+        <div class="schedule__title">
+            <h1>Quản lý lớp học</h1>
+        </div>
+      </div>
+        <div class="col-md-6 m-3">
+            <div class="schedule__search row">
+                <div class="col-md-6">
+                    <input  
+                        pInputText  
+                        class="ng-invalid ng-dirty" 
+                        name="search" 
+                        [(ngModel)]="searchText" 
+                        (ngModelChange)="filterClasses()" 
+                        autocomplete="off" 
+                        placeholder="&#61442;  Tìm kiếm lớp học"
+                    >
+                </div>
+                <div class="col-md-6">
+                    <button 
+                        class=""
+                        pButton 
+                        pRipple 
+                        label="Thêm lớp học" 
+                        class="p-button-success"
+                        (click)="ShowAddClass()"
+                        >
+                    </button>
+                    <p-dialog header="Thêm lớp học" name="profile" [(visible)]="addClass" [style]="{ width: '25rem' }">
+                        <div class="flex align-items-center gap-2 mb-3">
+                            <label for="name" class="font-semibold w-6rem">Tên lớp học</label>
+                            <input pInputText id="name" class="flex-auto" [(ngModel)]="addNameClass" autocomplete="off" />
+                        </div>
+                        <div class="flex align-items-center gap-2 mb-3">
+                            <label for="course" class="font-semibold w-6rem">Khóa</label>
+                            <input pInputText id="course" class="flex-auto" [(ngModel)]="addCourse" autocomplete="off" />
+                        </div>
+                        <div class="flex align-items-center gap-2 mb-3">
+                            <label for="year_Of_Admission" class="font-semibold w-6rem">Năm học</label>
+                            <input type="date" pInputText id="year_Of_Admission" class="flex-auto" [(ngModel)]="addYear_Of_Admission" autocomplete="off" />
+                        </div>
+                        <div class="flex align-items-center gap-2 mb-3">
+                            <label for="description" class="font-semibold w-6rem">Mô tả</label>
+                            <input pInputText id="description" class="flex-auto" [(ngModel)]="addDescription" autocomplete="off" />
+                        </div>
+                        <div class="flex justify-content-end gap-2">
+                            <p-confirmPopup />
+                            <p-button 
+                            class="m-2"
+                            (click)="Cancel($event, addClass)" 
+                            severity="danger" 
+                            label="Cancel" 
+                            [outlined]="true" />
+
+                            <p-confirmPopup />
+                            <p-button 
+                            class="m-2"
+                            (click)="Add($event, addClass)" 
+                            severity="primary" 
+                            label="Save" 
+                            [outlined]="true" />
+                        </div>
+                    </p-dialog>
+                </div>
+            </div>
+        </div>
+      <div class="render_schedule">
+        <p-table
+        [value]="classes"
+        [paginator]="true"
+        [rows]="5"
+        [first]="first"
+        [showCurrentPageReport]="true"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        currentPageReportTemplate="Hiển thị {first} tới {last} của {totalRecords} lớp học"
+        (onPage)="pageChange($event)"
+        [rowsPerPageOptions]="[10, 25, 50]"
+    >
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="NumericalOrder" style="width:10%">
+                    STT
+                    <p-sortIcon field="NumericalOrder" />
+                </th>
+                <th pSortableColumn="name"  style="width:15%">
+                    Tên lớp
+                    <p-sortIcon field="name" 
+                />
+                <th pSortableColumn="year_Of_Admission"  style="width:15%">
+                    Năm học
+                    <p-sortIcon field="year_Of_Admission" 
+                />
+                <th pSortableColumn="course"  style="width:15%">
+                    Khóa học
+                    <p-sortIcon field="course" />
+                </th>
+                <th pSortableColumn="description"  style="width:15%">
+                    Mô tả
+                    <p-sortIcon field="description" />
+                </th>
+                <th pSortableColumn="createDate"  style="width:15%">
+                    Ngày tạo
+                    <p-sortIcon field="createDate" 
+                />
+                <th   style="width:25%">
+                    Thao tác
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-customer >
+            <tr>
+                <td>{{ customer.NumericalOrder }}</td>
+                <td>{{ customer.name }}</td>
+                <td>{{ customer.year_Of_Admission }}</td>
+                <td>{{ customer.course == "string" ? "" : customer.course }}</td>
+                <td>{{ customer.description == "string" ? "" : customer.description }}</td>
+                <td>{{ customer.createDate }}</td>
+                <td class="actions">
+                    <div> 
+                    <i 
+                        (click)="ShowProfile(customer.id)" 
+                        [style]="{ 'color': '#fca130' }"
+                        ngxTippy="Sửa" 
+                        [tippyProps]="{ placement: 'bottom'  }" 
+                        class="pi pi-wrench m-2" 
+                        style="font-size: 2rem; font-size: 140%; cursor: pointer;">
+                    </i>
+                    <p-dialog header="Cập nhật thông tin lớp học" name="profile" *ngIf="dialogVisible[customer.id]"  [(visible)]="dialogVisible[customer.id]" [style]="{ width: '25rem' }">
+                        <div class="flex align-items-center gap-2 mb-3">
+                            <label for="name" class="font-semibold w-6rem">Tên lớp học</label>
+                            <input pInputText id="name" class="flex-auto" [(ngModel)]="nameClass" autocomplete="off" />
+                        </div>
+                        <div class="flex align-items-center gap-2 mb-3">
+                            <label for="course" class="font-semibold w-6rem">Khóa</label>
+                            <input pInputText id="course" class="flex-auto" [(ngModel)]="course" autocomplete="off" />
+                        </div>
+                        <div class="flex align-items-center gap-2 mb-3">
+                            <label for="year_Of_Admission" class="font-semibold w-6rem">Năm học</label>
+                            <input pInputText id="year_Of_Admission" class="flex-auto" [(ngModel)]="year_Of_Admission" autocomplete="off" />
+                        </div>
+                        <div class="flex align-items-center gap-2 mb-3">
+                            <label for="description" class="font-semibold w-6rem">Mô tả</label>
+                            <input pInputText id="description" class="flex-auto" [(ngModel)]="description" autocomplete="off" />
+                        </div>
+                        <div class="flex justify-content-end gap-2">
+                            <p-confirmPopup />
+                            <p-button 
+                            class="m-2"
+                            (click)="Cancel($event, customer.id)" 
+                            severity="danger" 
+                            label="Cancel" 
+                            [outlined]="true" />
+
+                            <p-confirmPopup />
+                            <p-button 
+                            class="m-2"
+                            (click)="Save($event, customer.id)" 
+                            severity="primary" 
+                            label="Save" 
+                            [outlined]="true" />
+                        </div>
+                    </p-dialog>
+                    </div>
+                    <div>
+                        <p-confirmPopup />
+                        <i 
+                            (click)="DeleteClass($event, customer.id)" 
+                            ngxTippy="Xóa" 
+                            [style]="{ 'color': 'red' }"
+                            [tippyProps]="{ placement: 'bottom'  }" 
+                            class="pi pi-trash m-2" 
+                            style="font-size: 2rem; font-size: 140%; cursor: pointer;" 
+                        >
+                        </i>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+         
+    </p-table>
+      </div>
+  </div>
+</div>

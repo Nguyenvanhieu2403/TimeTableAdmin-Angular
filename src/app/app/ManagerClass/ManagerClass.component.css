@@ -1,0 +1,7 @@
+.flex-auto {
+    width: 100%;
+}
+
+.actions {
+    display: flex;
+}
