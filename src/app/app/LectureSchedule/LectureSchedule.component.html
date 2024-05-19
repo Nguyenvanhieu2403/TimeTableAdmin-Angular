@@ -9,7 +9,7 @@
                     <p-calendar 
                         class="m-2"
                         [inputStyle]="{'width':'70%'}"
-                        [(ngModel)]="date" 
+                        [(ngModel)]="dateStart" 
                         [iconDisplay]="'input'" 
                         [showIcon]="true" 
                         inputId="icondisplay" 
@@ -17,18 +17,348 @@
                     <p-calendar 
                         class="m-2"
                         [inputStyle]="{'width':'70%'}"
-                        [(ngModel)]="date" 
+                        [(ngModel)]="dateEnd" 
                         [iconDisplay]="'input'" 
                         [showIcon]="true" 
                         inputId="icondisplay" 
                     />
-                    <p-button class="m-1" label="Chọn lớp" />
-                    <p-button class="m-1" label="Chọn phòng" />
-                    <p-button class="m-1" label="Chọn môn" />
-                    <p-button class="m-1" label="Sắp xếp lịch" />
+                    <p-button (click)="showDialog()" (click)="showClass()" class="m-1" label="Chọn lớp" />
+                    <p-dialog 
+                        header="Chọn lớp học" 
+                        [modal]="true"
+                        [(visible)]="visible" 
+                        [style]="{ width: '90rem' }" 
+                        [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+                        <div class="card">
+                            <div class="mb-3">
+                                <p-button 
+                                    type="button" 
+                                    icon="pi pi-chevron-left" 
+                                    (click)="prev()" 
+                                    [disabled]="isFirstPage()" 
+                                    styleClass="p-button-text" />
+                                <p-button 
+                                    type="button" 
+                                    icon="pi pi-refresh" 
+                                    (click)="reset()" 
+                                    styleClass="p-button-text" />
+                                <p-button 
+                                    type="button" 
+                                    icon="pi pi-chevron-right" 
+                                    (click)="next()" 
+                                    [disabled]="isLastPage()" 
+                                    styleClass="p-button-text" />
+                            </div>
+                            <p-table
+                                [value]="classes"
+                                [paginator]="true"
+                                [rows]="5"
+                                [first]="first"
+                                [showCurrentPageReport]="true"
+                                [tableStyle]="{ 'min-width': '50rem' }"
+                                currentPageReportTemplate="Hiển thị {first} tới {last} của {totalRecords} lớp học"
+                                (onPage)="pageChange($event)"
+                                [rowsPerPageOptions]="[10, 25, 50]"
+                            >
+                                <ng-template pTemplate="header">
+                                    <tr>
+                                        <th pSortableColumn="NumericalOrder" style="width:10%">
+                                            STT
+                                            <p-sortIcon field="NumericalOrder" />
+                                        </th>
+                                        <th pSortableColumn="name"  style="width:15%">
+                                            Tên lớp
+                                            <p-sortIcon field="name" />
+                                        </th>
+                                        <th pSortableColumn="year_Of_Admission"  style="width:15%">
+                                            Năm học
+                                            <p-sortIcon field="year_Of_Admission" />
+                                        </th>
+                                        <th pSortableColumn="course"  style="width:15%">
+                                            Khóa học
+                                            <p-sortIcon field="course" />
+                                        </th>
+                                        <th pSortableColumn="usedState"  style="width:10%">
+                                            Trạng thái
+                                            <p-sortIcon field="usedState" />
+                                        </th>
+                                        <th pSortableColumn="description" style="width:25%">
+                                            Mô tả
+                                            <p-sortIcon field="description"/>
+                                        </th>
+                                        <th style="width:15%">
+                                            Chức năng
+                                        </th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-customer>
+                                    <tr>
+                                        <td>{{ customer.NumericalOrder }}</td>
+                                        <td>{{ customer.name }}</td>
+                                        <td>{{ customer.year_Of_Admission }}</td>
+                                        <td>{{ customer.course == "string" ? "" : customer.course }}</td>
+                                        <td>{{ customer.usedState == 0 ? "Đang mở": "Đang đóng" }}</td>
+                                        <td>{{ customer.description == "string" ? "" : customer.description }}</td>
+                                        <td>
+                                            <p-toggleButton 
+                                                [(ngModel)]="customer.idChoose" 
+                                                (onChange)="SaveClass(customer)"
+                                                onLabel="Chọn" 
+                                                offLabel="Bỏ chọn" 
+                                            />
+                                        </td>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="paginatorleft">
+                                    <p-button type="button" icon="pi pi-plus" styleClass="p-button-text" />
+                                </ng-template>
+                                <ng-template pTemplate="paginatorright">
+                                    <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text" />
+                                </ng-template>
+                            </p-table>
+                        </div>
+                    </p-dialog>
+                    <!-- Chọn phòng -->
+                    <p-button (click)="ShowClassRoom()" (click)="showClassRoom()" class="m-1" label="Chọn phòng" />
+                    <p-dialog 
+                        header="Chọn phòng học" 
+                        [modal]="true"
+                        [(visible)]="visibleClassRoom" 
+                        [style]="{ width: '90rem' }" 
+                        [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+                        <div class="card">
+                            <div class="mb-3">
+                                <p-button 
+                                    type="button" 
+                                    icon="pi pi-chevron-left" 
+                                    (click)="prev()" 
+                                    [disabled]="isFirstPage()" 
+                                    styleClass="p-button-text" />
+                                <p-button 
+                                    type="button" 
+                                    icon="pi pi-refresh" 
+                                    (click)="reset()" 
+                                    styleClass="p-button-text" />
+                                <p-button 
+                                    type="button" 
+                                    icon="pi pi-chevron-right" 
+                                    (click)="next()" 
+                                    [disabled]="isLastPage()" 
+                                    styleClass="p-button-text" />
+                            </div>
+                            <p-table
+                                [value]="classRoomes"
+                                [paginator]="true"
+                                [rows]="5"
+                                [first]="first"
+                                [showCurrentPageReport]="true"
+                                [tableStyle]="{ 'min-width': '50rem' }"
+                                currentPageReportTemplate="Hiển thị {first} tới {last} của {totalRecords} phòng học"
+                                (onPage)="pageChange($event)"
+                                [rowsPerPageOptions]="[10, 25, 50]"
+                            >
+                                <ng-template pTemplate="header">
+                                    <tr>
+                                        <th pSortableColumn="NumericalOrder" style="width:10%">
+                                            STT
+                                            <p-sortIcon field="NumericalOrder" />
+                                        </th>
+                                        <th pSortableColumn="name"  style="width:15%">
+                                            Tên phòng
+                                            <p-sortIcon field="name" />
+                                        </th>
+                                        <th pSortableColumn="usedState"  style="width:10%">
+                                            Trạng thái
+                                            <p-sortIcon field="usedState" />
+                                        </th>
+                                        <th pSortableColumn="description" style="width:25%">
+                                            Mô tả
+                                            <p-sortIcon field="description"/>
+                                        </th>
+                                        <th style="width:15%">
+                                            Chức năng
+                                        </th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-customer>
+                                    <tr>
+                                        <td>{{ customer.NumericalOrder }}</td>
+                                        <td>{{ customer.name }}</td>
+                                        <td>{{ customer.usedState == 0 ? "Đang mở": "Đang đóng" }}</td>
+                                        <td>{{ customer.description == "string" ? "" : customer.description }}</td>
+                                        <td>
+                                            <p-toggleButton 
+                                                [(ngModel)]="customer.idChoose" 
+                                                (onChange)="SaveClassRoom(customer)"
+                                                onLabel="Chọn" 
+                                                offLabel="Bỏ chọn" 
+                                            />
+                                        </td>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="paginatorleft">
+                                    <p-button type="button" icon="pi pi-plus" styleClass="p-button-text" />
+                                </ng-template>
+                                <ng-template pTemplate="paginatorright">
+                                    <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text" />
+                                </ng-template>
+                            </p-table>
+                        </div>
+                    </p-dialog>
+                    <!-- Chọn môn -->
+                    <p-button (click)="ShowSubject()" (click)="showSubject()" class="m-1" label="Chọn môn" />
+                    <p-dialog 
+                        header="Chọn môn học" 
+                        [modal]="true"
+                        [(visible)]="visibleSubject" 
+                        [style]="{ width: '90rem' }" 
+                        [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+                        <div class="card">
+                            <div class="mb-3">
+                                <p-button 
+                                    type="button" 
+                                    icon="pi pi-chevron-left" 
+                                    (click)="prev()" 
+                                    [disabled]="isFirstPage()" 
+                                    styleClass="p-button-text" />
+                                <p-button 
+                                    type="button" 
+                                    icon="pi pi-refresh" 
+                                    (click)="reset()" 
+                                    styleClass="p-button-text" />
+                                <p-button 
+                                    type="button" 
+                                    icon="pi pi-chevron-right" 
+                                    (click)="next()" 
+                                    [disabled]="isLastPage()" 
+                                    styleClass="p-button-text" />
+                            </div>
+                            <p-table
+                                [value]="subjectes"
+                                [paginator]="true"
+                                [rows]="5"
+                                [first]="first"
+                                [showCurrentPageReport]="true"
+                                [tableStyle]="{ 'min-width': '50rem' }"
+                                currentPageReportTemplate="Hiển thị {first} tới {last} của {totalRecords} phòng học"
+                                (onPage)="pageChange($event)"
+                                [rowsPerPageOptions]="[10, 25, 50]"
+                            >
+                                <ng-template pTemplate="header">
+                                    <tr>
+                                        <th pSortableColumn="NumericalOrder" style="width:15%">
+                                            STT
+                                            <p-sortIcon field="NumericalOrder" />
+                                        </th>
+                                        <th pSortableColumn="course_code"  style="width:15%">
+                                            Mã môn học
+                                            <p-sortIcon field="course_code" 
+                                        />
+                                        <th pSortableColumn="name"  style="width:15%">
+                                            Tên môn
+                                            <p-sortIcon field="name" />
+                                        </th>
+                                        <th pSortableColumn="credits"  style="width:15%">
+                                            Số tín chỉ
+                                            <p-sortIcon field="credits" />
+                                        </th>
+                                        <th style="width:15%">
+                                            Chức năng
+                                        </th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-customer>
+                                    <tr>
+                                        <td>{{ customer.NumericalOrder }}</td>
+                                        <td>{{ customer.course_code }}</td>
+                                        <td>{{ customer.name }}</td>
+                                        <td>{{ customer.credits }}</td>
+                                        <td>
+                                            <p-toggleButton 
+                                                [(ngModel)]="customer.idChoose" 
+                                                (onChange)="SaveSubject(customer)"
+                                                onLabel="Chọn" 
+                                                offLabel="Bỏ chọn" 
+                                            />
+                                        </td>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="paginatorleft">
+                                    <p-button type="button" icon="pi pi-plus" styleClass="p-button-text" />
+                                </ng-template>
+                                <ng-template pTemplate="paginatorright">
+                                    <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text" />
+                                </ng-template>
+                            </p-table>
+                        </div>
+                    </p-dialog>
+                    <p-button class="m-1" label="Sắp xếp lịch" (onClick)="PostSchedule()" />
                 </div>
                 
             </div>
+        </div>
+        <div class="render_schedule">
+            <p-table
+                [value]="schedules"
+                [paginator]="true"
+                [rows]="5"
+                [first]="first"
+                [showCurrentPageReport]="true"
+                [tableStyle]="{ 'min-width': '50rem' }"
+                currentPageReportTemplate="Hiển thị {first} tới {last} của {totalRecords} phòng học"
+                (onPage)="pageChange($event)"
+                [rowsPerPageOptions]="[10, 25, 50]"
+            >
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th pSortableColumn="NumericalOrder" style="width:10%">
+                            STT
+                            <p-sortIcon field="NumericalOrder" />
+                        </th>
+                        <th pSortableColumn="course_Code"  style="width:10%">
+                            Mã môn học
+                            <p-sortIcon field="course_Code" 
+                        />
+                        <th pSortableColumn="fullName"  style="width:15%">
+                            Tên giảng viên
+                            <p-sortIcon field="fullName" 
+                        />
+                        <th pSortableColumn="lopHoc"  style="width:15%">
+                            Lớp học
+                            <p-sortIcon field="lopHoc" />
+                        </th>
+                        <th pSortableColumn="phongHoc"  style="width:15%">
+                            Phòng học
+                            <p-sortIcon field="phongHoc" />
+                        </th>
+                        <th pSortableColumn="monHoc"  style="width:15%">
+                            Môn học
+                            <p-sortIcon field="monHoc" 
+                        />
+                        <th pSortableColumn="lichHocTongList"  style="width:25%">
+                            Lịch học
+                            <p-sortIcon field="lichHocTongList" 
+                        />
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-customer>
+                    <tr>
+                        <td>{{ customer.NumericalOrder }}</td>
+                        <td>{{ customer.course_Code }}</td>
+                        <td>{{ customer.fullName }}</td>
+                        <td>{{ customer.lopHoc }}</td>
+                        <td>{{ customer.phongHoc }}</td>
+                        <td>{{ customer.monHoc }}</td>
+                        <td>{{ customer.lichHocTongList }}</td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="paginatorleft">
+                    <p-button type="button" icon="pi pi-plus" styleClass="p-button-text" />
+                </ng-template>
+                <ng-template pTemplate="paginatorright">
+                    <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text" />
+                </ng-template>
+            </p-table>
         </div>
     </div>
   <div class="schedule__body--allNotUser" id="schedule__body--allNotUser">

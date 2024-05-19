@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { DatePipe } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,32 +15,38 @@ import { ButtonModule } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
 import { PasswordModule } from 'primeng/password';
 import { CalendarModule } from 'primeng/calendar';
+import { DialogModule } from 'primeng/dialog';
+import { TableModule } from 'primeng/table';
+import { ToggleButtonModule } from 'primeng/togglebutton';
 import { ChangePassWordComponent } from './app/ChangePassWord/ChangePassWord.component';
 import { LectureScheduleComponent } from './app/LectureSchedule/LectureSchedule.component';
 
 @NgModule({
-  declarations: [				
-    AppComponent,
-    IndexComponent,
-    InformationComponent,
-    ChangeInforComponent,
-    ChangePassWordComponent,
-    LectureScheduleComponent,
-    NavBarComponent
-   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BaseModuleModule,
-    FormsModule,
-    ReactiveFormsModule,
-    InputTextModule,
-    ButtonModule,
-    PasswordModule,
-    CalendarModule,
-    CheckboxModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        IndexComponent,
+        InformationComponent,
+        ChangeInforComponent,
+        ChangePassWordComponent,
+        LectureScheduleComponent,
+        NavBarComponent
+    ],
+    providers: [DatePipe],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BaseModuleModule,
+        FormsModule,
+        ReactiveFormsModule,
+        InputTextModule,
+        ButtonModule,
+        PasswordModule,
+        CalendarModule,
+        CheckboxModule,
+        DialogModule,
+        TableModule,
+        ToggleButtonModule
+    ]
 })
 export class AppModule {}

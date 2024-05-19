@@ -11,7 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     ToastrModule.forRoot({
       timeOut: 5000,
-      positionClass: 'toast-top-right',
+      positionClass: 'toast-bottom-right',
     }),
     BrowserAnimationsModule,
     FormsModule,
