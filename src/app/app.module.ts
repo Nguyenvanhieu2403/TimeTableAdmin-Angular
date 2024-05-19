@@ -11,7 +11,11 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { ChangeInforComponent } from './app/ChangeInfor/ChangeInfor.component';
 import { ButtonModule } from 'primeng/button';
+import { CheckboxModule } from 'primeng/checkbox';
+import { PasswordModule } from 'primeng/password';
+import { CalendarModule } from 'primeng/calendar';
 import { ChangePassWordComponent } from './app/ChangePassWord/ChangePassWord.component';
+import { LectureScheduleComponent } from './app/LectureSchedule/LectureSchedule.component';
 
 @NgModule({
   declarations: [				
@@ -20,6 +24,7 @@ import { ChangePassWordComponent } from './app/ChangePassWord/ChangePassWord.com
     InformationComponent,
     ChangeInforComponent,
     ChangePassWordComponent,
+    LectureScheduleComponent,
     NavBarComponent
    ],
   imports: [
@@ -29,7 +34,10 @@ import { ChangePassWordComponent } from './app/ChangePassWord/ChangePassWord.com
     FormsModule,
     ReactiveFormsModule,
     InputTextModule,
-    ButtonModule
+    ButtonModule,
+    PasswordModule,
+    CalendarModule,
+    CheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

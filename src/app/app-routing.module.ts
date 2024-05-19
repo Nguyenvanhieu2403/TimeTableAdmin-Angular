@@ -5,6 +5,9 @@ import { IndexComponent } from './app/Index/Index.component';
 import { InformationComponent } from './app/Information/Information.component';
 import { ChangeInforComponent } from './app/ChangeInfor/ChangeInfor.component';
 import { ChangePassWordComponent } from './app/ChangePassWord/ChangePassWord.component';
+import { LectureScheduleComponent } from './app/LectureSchedule/LectureSchedule.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { AppComponent } from './app.component';
 
 const routes: Routes = [
   {
@@ -29,7 +32,7 @@ const routes: Routes = [
     path: 'changePassWord', component: ChangePassWordComponent,
   },
   {
-    path: '*', component: IndexComponent,
+    path: 'lectureSchedule', component: LectureScheduleComponent,
   }
 
 ];

@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class NavBarComponent implements OnInit {
 
+
   toShow:boolean=false;
   title = 'TimeTableAdmin';
   body: any;
@@ -17,14 +18,14 @@ export class NavBarComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-    if(localStorage.getItem('login')!=null){
-      this.toShow=true;
-      this.body = "col-md-6"
-    }
-    else {
-      this.toShow=false;
-      this.body = "col-md-12"
-    }
+      // Thực hiện các hành động khác sau khi đã reload
+      if (localStorage.getItem('login') != null) {
+        this.toShow = true;
+        this.body = "col-md-6";
+      } else {
+        this.toShow = false;
+        this.body = "col-md-12";
+      }
   }
 
   getInformation() {
@@ -36,6 +37,10 @@ export class NavBarComponent implements OnInit {
   }
   ShowchangPassword() {
     this.router.navigate(['/changePassWord']);
+  }
+
+  ShowLectureSchedule() {
+    this.router.navigate(['/lectureSchedule']);
   }
 
   Show() {

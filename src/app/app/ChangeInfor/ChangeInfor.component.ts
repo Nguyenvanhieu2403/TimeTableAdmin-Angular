@@ -61,7 +61,7 @@ export class ChangeInforComponent implements OnInit {
         }, 5000);
       }
       else {
-        this.toastr.error('Lỗi trong quá trình gọi API');
+        this.toastr.error('Cập nhật thông tin thất bại');
       }
     });
   }

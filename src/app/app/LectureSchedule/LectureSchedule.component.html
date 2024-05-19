@@ -1,0 +1,36 @@
+<div class=" Schedule" id="Schedule">
+    <div class="schedule__body row">
+        <div class="col-md-9">
+            <div class="schedule__title">
+                <h1>Sắp xếp lịch giảng</h1>
+            </div>
+            <div class="schedule__body--item">
+                <div class="input_schedule">
+                    <p-calendar 
+                        class="m-2"
+                        [inputStyle]="{'width':'70%'}"
+                        [(ngModel)]="date" 
+                        [iconDisplay]="'input'" 
+                        [showIcon]="true" 
+                        inputId="icondisplay" 
+                    />
+                    <p-calendar 
+                        class="m-2"
+                        [inputStyle]="{'width':'70%'}"
+                        [(ngModel)]="date" 
+                        [iconDisplay]="'input'" 
+                        [showIcon]="true" 
+                        inputId="icondisplay" 
+                    />
+                    <p-button class="m-1" label="Chọn lớp" />
+                    <p-button class="m-1" label="Chọn phòng" />
+                    <p-button class="m-1" label="Chọn môn" />
+                    <p-button class="m-1" label="Sắp xếp lịch" />
+                </div>
+                
+            </div>
+        </div>
+    </div>
+  <div class="schedule__body--allNotUser" id="schedule__body--allNotUser">
+  </div>
+</div>

@@ -1,0 +1,23 @@
+.schedule__body {
+    display: flex;
+    flex-direction: column;
+}
+
+.schedule__title {
+    /* width: 26%; */
+}
+
+.schedule__title h1 {
+    border-bottom: 3px solid #33B5E5;
+    width: 98%;
+    text-align: left;
+    padding: 10px;
+}
+
+.input_schedule {
+    display: flex;
+}
+
+.schedule__body--item {
+    display: flex;
+}

@@ -14,7 +14,7 @@ import { LoginService } from './Login.service';
 export class LoginComponent implements OnInit {
   userName: any;
   passWord: any;
-  typePassword: any;
+  typePassword: any = 'password';
   check: boolean=false;
   alert: any
   private storageSub= new Subject<string>();

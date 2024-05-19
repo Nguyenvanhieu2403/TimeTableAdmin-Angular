@@ -32,7 +32,7 @@ export class AppComponent {
 
     if(localStorage.getItem('login')!=null){
       this.toShow=true;
-      this.body = "col-md-6"
+      this.body = "col-md-9"
     }
     else {
       this.toShow=false;
