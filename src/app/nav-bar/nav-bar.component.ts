@@ -14,10 +14,14 @@ export class NavBarComponent implements OnInit {
   body: any;
   StyleInfor: any;
   click: boolean = false;
+  imgSrc: any;
+  FullName: any;
 
   constructor(private router: Router) { }
 
   ngOnInit() {
+    this.imgSrc = localStorage.getItem('avata');
+    this.FullName = localStorage.getItem('fullname');
       // Thực hiện các hành động khác sau khi đã reload
       if (localStorage.getItem('login') != null) {
         this.toShow = true;
@@ -41,6 +45,22 @@ export class NavBarComponent implements OnInit {
 
   ShowLectureSchedule() {
     this.router.navigate(['/lectureSchedule']);
+  }
+
+  ShowScheduleAll() {
+    this.router.navigate(['/ScheduleAll']);
+  }
+
+  ScheduleNotRegistered() {
+    this.router.navigate(['/ScheduleNotRegistered']);
+  }
+
+  ScheduleRegistered() {
+    this.router.navigate(['/ScheduleRegistered']);
+  }
+
+  ShowManagerClass() {
+    this.router.navigate(['/ManagerClass']);
   }
 
   Show() {

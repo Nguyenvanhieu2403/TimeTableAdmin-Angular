@@ -20,6 +20,10 @@ import { TableModule } from 'primeng/table';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { ChangePassWordComponent } from './app/ChangePassWord/ChangePassWord.component';
 import { LectureScheduleComponent } from './app/LectureSchedule/LectureSchedule.component';
+import { ScheduleAllComponent } from './app/ScheduleAll/ScheduleAll.component';
+import { ScheduleNotRegisteredComponent } from './app/ScheduleNotRegistered/ScheduleNotRegistered.component';
+import { ScheduleRegisteredComponent } from './app/ScheduleRegistered/ScheduleRegistered.component';
+import { ManagerClassComponent } from './app/ManagerClass/ManagerClass.component';
 
 @NgModule({
     declarations: [
@@ -29,6 +33,10 @@ import { LectureScheduleComponent } from './app/LectureSchedule/LectureSchedule.
         ChangeInforComponent,
         ChangePassWordComponent,
         LectureScheduleComponent,
+        ScheduleAllComponent,
+        ScheduleNotRegisteredComponent,
+        ScheduleRegisteredComponent,
+        ManagerClassComponent,
         NavBarComponent
     ],
     providers: [DatePipe],

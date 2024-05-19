@@ -6,8 +6,10 @@ import { InformationComponent } from './app/Information/Information.component';
 import { ChangeInforComponent } from './app/ChangeInfor/ChangeInfor.component';
 import { ChangePassWordComponent } from './app/ChangePassWord/ChangePassWord.component';
 import { LectureScheduleComponent } from './app/LectureSchedule/LectureSchedule.component';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { AppComponent } from './app.component';
+import { ScheduleAllComponent } from './app/ScheduleAll/ScheduleAll.component';
+import { ScheduleNotRegisteredComponent } from './app/ScheduleNotRegistered/ScheduleNotRegistered.component';
+import { ScheduleRegisteredComponent } from './app/ScheduleRegistered/ScheduleRegistered.component';
+import { ManagerClassComponent } from './app/ManagerClass/ManagerClass.component';
 
 const routes: Routes = [
   {
@@ -33,6 +35,18 @@ const routes: Routes = [
   },
   {
     path: 'lectureSchedule', component: LectureScheduleComponent,
+  },
+  {
+    path: 'ScheduleAll', component: ScheduleAllComponent,
+  },
+  {
+    path: 'ScheduleNotRegistered', component: ScheduleNotRegisteredComponent,
+  },
+  {
+    path: 'ScheduleRegistered', component: ScheduleRegisteredComponent,
+  },
+  {
+    path: 'ManagerClass', component: ManagerClassComponent,
   }
 
 ];
