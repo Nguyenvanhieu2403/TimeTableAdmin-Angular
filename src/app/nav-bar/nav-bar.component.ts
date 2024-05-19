@@ -63,6 +63,10 @@ export class NavBarComponent implements OnInit {
     this.router.navigate(['/ManagerClass']);
   }
 
+  ShowManagerSubjects() {
+    this.router.navigate(['/ManagerSubjects']);
+  }
+
   Show() {
     this.click = !this.click;
     if (this.click) {

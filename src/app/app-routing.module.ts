@@ -10,6 +10,7 @@ import { ScheduleAllComponent } from './app/ScheduleAll/ScheduleAll.component';
 import { ScheduleNotRegisteredComponent } from './app/ScheduleNotRegistered/ScheduleNotRegistered.component';
 import { ScheduleRegisteredComponent } from './app/ScheduleRegistered/ScheduleRegistered.component';
 import { ManagerClassComponent } from './app/ManagerClass/ManagerClass.component';
+import { ManagerSubjectsComponent } from './app/ManagerSubjects/ManagerSubjects.component';
 
 const routes: Routes = [
   {
@@ -47,7 +48,10 @@ const routes: Routes = [
   },
   {
     path: 'ManagerClass', component: ManagerClassComponent,
-  }
+  },
+  {
+    path: 'ManagerSubjects', component: ManagerSubjectsComponent,
+  },
 
 ];
 
