@@ -204,7 +204,7 @@ export class ManagerAccountComponent implements OnInit {
   filterClasses() {
     if (this.searchText) {
       this.classes = this.classes.filter((element: any) => {
-        return element.name.toLowerCase().includes(this.searchText.toLowerCase()) || element.course.toLowerCase().includes(this.searchText.toLowerCase());
+        return element.fullName.toLowerCase().includes(this.searchText.toLowerCase()) || element.email.toLowerCase().includes(this.searchText.toLowerCase());
       });
     } else {
       this.ngOnInit();
