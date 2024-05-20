@@ -11,6 +11,7 @@ import { ScheduleNotRegisteredComponent } from './app/ScheduleNotRegistered/Sche
 import { ScheduleRegisteredComponent } from './app/ScheduleRegistered/ScheduleRegistered.component';
 import { ManagerClassComponent } from './app/ManagerClass/ManagerClass.component';
 import { ManagerSubjectsComponent } from './app/ManagerSubjects/ManagerSubjects.component';
+import { ManagerClassRoomComponent } from './app/ManagerClassRoom/ManagerClassRoom.component';
 
 const routes: Routes = [
   {
@@ -51,6 +52,9 @@ const routes: Routes = [
   },
   {
     path: 'ManagerSubjects', component: ManagerSubjectsComponent,
+  },
+  {
+    path: 'ManagerClassRoom', component: ManagerClassRoomComponent,
   },
 
 ];

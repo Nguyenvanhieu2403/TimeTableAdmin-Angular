@@ -28,6 +28,7 @@ import { ScheduleRegisteredComponent } from './app/ScheduleRegistered/ScheduleRe
 import { ManagerClassComponent } from './app/ManagerClass/ManagerClass.component';
 import { FilterPipe } from './pipes/FilterPipe.pipe';
 import { ManagerSubjectsComponent } from './app/ManagerSubjects/ManagerSubjects.component';
+import { ManagerClassRoomComponent } from './app/ManagerClassRoom/ManagerClassRoom.component';
 
 @NgModule({
     declarations: [
@@ -42,6 +43,7 @@ import { ManagerSubjectsComponent } from './app/ManagerSubjects/ManagerSubjects.
         ScheduleRegisteredComponent,
         ManagerClassComponent,
         ManagerSubjectsComponent,
+        ManagerClassRoomComponent,
         NavBarComponent,
         FilterPipe
     ],
