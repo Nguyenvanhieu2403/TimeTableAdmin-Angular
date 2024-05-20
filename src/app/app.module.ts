@@ -12,6 +12,7 @@ import { TableModule } from 'primeng/table';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { NgxTippyModule } from 'ngx-tippy-wrapper';
+import { SplitButtonModule } from 'primeng/splitbutton';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,6 +30,8 @@ import { ManagerClassComponent } from './app/ManagerClass/ManagerClass.component
 import { FilterPipe } from './pipes/FilterPipe.pipe';
 import { ManagerSubjectsComponent } from './app/ManagerSubjects/ManagerSubjects.component';
 import { ManagerClassRoomComponent } from './app/ManagerClassRoom/ManagerClassRoom.component';
+import { ManagerAccountComponent } from './app/ManagerAccount/ManagerAccount.component';
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
     declarations: [
@@ -44,6 +47,7 @@ import { ManagerClassRoomComponent } from './app/ManagerClassRoom/ManagerClassRo
         ManagerClassComponent,
         ManagerSubjectsComponent,
         ManagerClassRoomComponent,
+        ManagerAccountComponent,
         NavBarComponent,
         FilterPipe
     ],
@@ -64,7 +68,9 @@ import { ManagerClassRoomComponent } from './app/ManagerClassRoom/ManagerClassRo
         TableModule,
         ToggleButtonModule,
         NgxTippyModule,
-        ConfirmPopupModule
+        ConfirmPopupModule,
+        SplitButtonModule,
+        NgbDropdownModule
     ]
 })
 export class AppModule {}

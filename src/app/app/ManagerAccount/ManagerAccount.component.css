@@ -1,0 +1,20 @@
+/* .input-search {
+    display: flex;
+    align-items: center;
+} */
+
+.justify-content-end p-button {
+    width: 280px;
+}
+
+.ng-invalid {
+    width: 100%;
+}
+
+.flex-auto {
+    width: 100%;
+}
+
+.actions {
+    display: flex;
+}

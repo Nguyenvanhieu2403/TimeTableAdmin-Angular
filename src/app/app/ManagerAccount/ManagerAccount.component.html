@@ -1,0 +1,236 @@
+<div class=" Schedule" id="Schedule">
+  <div class="schedule__body row">
+      <div class="col-md-9">
+        <div class="schedule__title">
+            <h1>Quản lý tài khoản</h1>
+        </div>
+      </div>
+        <div class="col-md-12 m-3">
+            <div class="schedule__search row">
+                <div class="col-md-4 input-search">
+                    <input  
+                        pInputText  
+                        class="ng-invalid ng-dirty" 
+                        name="search" 
+                        [(ngModel)]="searchText" 
+                        (ngModelChange)="filterClasses()" 
+                        autocomplete="off" 
+                        placeholder="  Tìm kiếm tài khoản"
+                    >
+                </div>
+                <div class="col-md-8">
+                    <div class="flex justify-content-end gap-2 m-2">
+                        <p-confirmPopup />
+                        <p-button 
+                            
+                            class="m-2"
+                            (click)="LockAccountType($event, 'TG')" 
+                            severity="danger" 
+                            label="Khóa giảng viên thỉnh giảng" 
+                            [outlined]="true" 
+                        />
+
+                        <p-confirmPopup />
+                        <p-button 
+                            
+                            class="m-2"
+                            (click)="UnLockAccountType($event, 'TG')" 
+                            severity="primary" 
+                            label="Mở khóa giảng viên thỉnh giảng" 
+                            [outlined]="true" 
+                        />
+                    </div>
+                    <div class="flex justify-content-end gap-2 m-2">
+                        <p-confirmPopup />
+                        <p-button 
+                            
+                            class="m-2 pl-5"
+                            (click)="LockAccountType($event, 'CH')" 
+                            severity="danger" 
+                            label="Khóa giảng viên cơ hữu" 
+                            [outlined]="true" 
+                        />
+
+                        <p-confirmPopup />
+                        <p-button 
+                            
+                            class="m-2"
+                            (click)="UnLockAccountType($event, 'CH')" 
+                            severity="primary" 
+                            label="Mở khóa giảng viên cơ hữu" 
+                            [outlined]="true" 
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+      <div class="render_schedule">
+        <p-table
+        [value]="classes"
+        [paginator]="true"
+        [rows]="5"
+        [first]="first"
+        [showCurrentPageReport]="true"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        currentPageReportTemplate="Hiển thị {first} tới {last} của {totalRecords} lớp học"
+        (onPage)="pageChange($event)"
+        [rowsPerPageOptions]="[10, 25, 50]"
+    >
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width:5%">
+                    STT
+                </th>
+                <th pSortableColumn="fullName"  style="width:15%">
+                    Họ tên
+                    <p-sortIcon field="fullName" 
+                />
+                <th  style="width:15%">
+                    Email
+                </th>
+                <th style="width:10%">
+                    Số điện thoại
+                </th>
+                <th pSortableColumn="type"  style="width:14%">
+                    Giảng viên
+                    <p-sortIcon field="type" />
+                </th>
+                <th style="width:15%">
+                    Ngày sinh
+                </th>
+                <th pSortableColumn="gender"  style="width:8%">
+                    Giới tính
+                    <p-sortIcon field="gender" 
+                />
+                <th pSortableColumn="usedState"  style="width:10%">
+                    Trạng thái
+                    <p-sortIcon field="usedState" 
+                />
+                <th   style="width:25%">
+                    Thao tác
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-customer >
+            <tr>
+                <td>{{ customer.NumericalOrder }}</td>
+                <td>{{ customer.fullName }}</td>
+                <td>{{ customer.email }}</td>
+                <td>{{ "0" +customer.phone}}</td>
+                <td>{{ customer.type == "TG" ? "Thỉnh giảng" : "Cơ hữu" }}</td>
+                <td>{{ customer.dateOfBirth }}</td>
+                <td>{{ customer.gender == 1 ? "Nam" : "Nữ" }}</td>
+                <td>{{ customer.usedState == 0 ? "Đang mở" : "Đang khóa" }}</td>
+                <td class="actions">
+                    <div class="row">
+                        <div class="col-md-3 m-1"> 
+                            <i 
+                                (click)="ShowProfile(customer.id)" 
+                                [style]="{ 'color': '#fca130' }"
+                                ngxTippy="Sửa" 
+                                [tippyProps]="{ placement: 'bottom'  }" 
+                                class="pi pi-wrench m-2" 
+                                style="font-size: 2rem; font-size: 140%; cursor: pointer;">
+                            </i>
+                        </div>
+                        <div class="col-md-3 m-1">
+                            <p-confirmPopup />
+                            <i 
+                                (click)="DeleteClass($event, customer.id)" 
+                                ngxTippy="Xóa" 
+                                [style]="{ 'color': 'red' }"
+                                [tippyProps]="{ placement: 'bottom'  }" 
+                                class="pi pi-trash m-2" 
+                                style="font-size: 2rem; font-size: 140%; cursor: pointer;" 
+                            >
+                            </i>
+                        </div>
+                        <div class="col-md-3 m-1" *ngIf="customer.usedState === 0; else unlockedTemplate">
+                            <p-confirmPopup></p-confirmPopup>
+                            <i 
+                                (click)="LockAccount($event, customer.id)" 
+                                ngxTippy="Khóa" 
+                                [style]="{ 'color': 'blue' }"
+                                [tippyProps]="{ placement: 'bottom'  }" 
+                                class="pi pi-lock m-2" 
+                                style="font-size: 2rem; font-size: 140%; cursor: pointer;" 
+                            >
+                            </i>
+                        </div>
+                        <ng-template #unlockedTemplate>
+                            <div class="col-md-3 m-1">
+                                <p-confirmPopup></p-confirmPopup>
+                                <i 
+                                    (click)="UnLockAccount($event, customer.id)" 
+                                    ngxTippy="Mở khóa" 
+                                    [style]="{ 'color': 'green' }"
+                                    [tippyProps]="{ placement: 'bottom'  }" 
+                                    class="pi pi-unlock m-2" 
+                                    style="font-size: 2rem; font-size: 140%; cursor: pointer;" 
+                                >
+                                </i>
+                            </div>
+                        </ng-template>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+      </div>
+  </div>
+</div>
+<div class="card flex justify-content-center">
+    <p-dialog header="Cập nhật thông tin tài khoản" [modal]="true" [(visible)]="id" [style]="{ width: '60rem' }">
+        <div class="flex align-items-center mb-12 row">
+            <div class="col-md-6">
+                <label for="firstName" class="font-semibold w-6rem">First Name</label>
+                <input pInputText id="firstName" class="flex-auto" [(ngModel)]="firstName" autocomplete="off" />
+            </div>
+            <div class="col-md-6">
+                <label for="lastName" class="font-semibold w-6rem">Last Name</label>
+                <input pInputText id="lastName" class="flex-auto" [(ngModel)]="lastName" autocomplete="off" />
+            </div>
+        </div>
+        <div class="flex align-items-center gap-2 mb-3">
+            <label for="email" class="font-semibold w-6rem">Email</label>
+            <input pInputText id="email" class="flex-auto" [(ngModel)]="email" autocomplete="off" />
+        </div>
+        <div class="flex align-items-center gap-2 mb-3">
+            <label for="phone" class="font-semibold w-6rem">Số điện thoại</label>
+            <input pInputText id="phone" class="flex-auto" [(ngModel)]="phone" autocomplete="off" />
+        </div>
+        <div class="flex align-items-center mb-12 row">
+            <div class="col-md-6">
+                <label for="dateOfBirth" class="font-semibold w-6rem">Ngày sinh</label>
+                <input pInputText id="dateOfBirth" class="flex-auto" [(ngModel)]="dateOfBirth" autocomplete="off" />
+            </div>
+            <div class="col-md-6">
+                <label for="gender" class="font-semibold w-6rem">Giới tính</label>
+                <input pInputText id="gender" class="flex-auto" [(ngModel)]="gender" autocomplete="off" />
+            </div>
+        </div>
+        <div class="flex align-items-center gap-2 mb-3">
+            <label for="avata" class="font-semibold w-6rem">Avatar</label>
+            <input pInputText id="avata" class="flex-auto" [(ngModel)]="avata" autocomplete="off" />
+        </div>
+        <div class="flex justify-content-end gap-2">
+            <p-confirmPopup />
+            <p-button 
+            class="m-2"
+            (click)="Cancel($event, id)" 
+            severity="danger" 
+            label="Cancel" 
+            [outlined]="true" />
+
+            <p-confirmPopup />
+            <p-button 
+            class="m-2"
+            (click)="Save($event, id)" 
+            severity="primary" 
+            label="Save" 
+            [outlined]="true" />
+        </div>
+    </p-dialog>
+</div>
+
+
