@@ -5,9 +5,9 @@
             <h1>Quản lý lớp học</h1>
         </div>
       </div>
-        <div class="col-md-6 m-3">
+        <div class="col-md-12 m-3">
             <div class="schedule__search row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <input  
                         pInputText  
                         class="ng-invalid ng-dirty" 
@@ -18,7 +18,7 @@
                         placeholder="  Tìm kiếm lớp học"
                     >
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <button 
                         class=""
                         pButton 
@@ -63,6 +63,17 @@
                             [outlined]="true" />
                         </div>
                     </p-dialog>
+                </div>
+                <div class="col-md-4">
+                    <button 
+                        class=""
+                        pButton 
+                        pRipple 
+                        label="Xuất Excel" 
+                        class="p-button-success"
+                        (click)="ExportExcel()"
+                        >
+                    </button>
                 </div>
             </div>
         </div>

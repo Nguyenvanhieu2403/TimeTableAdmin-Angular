@@ -1,0 +1,7 @@
+.striped-even {
+    background-color: #f9f9f9; /* Màu nền cho dòng chẵn */
+}
+
+.striped-odd {
+    background-color: #ffffff; /* Màu nền cho dòng lẻ */
+}

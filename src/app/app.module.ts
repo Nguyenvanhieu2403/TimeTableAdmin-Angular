@@ -13,6 +13,8 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { NgxTippyModule } from 'ngx-tippy-wrapper';
 import { SplitButtonModule } from 'primeng/splitbutton';
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { RadioButtonModule } from 'primeng/radiobutton';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,7 +33,7 @@ import { FilterPipe } from './pipes/FilterPipe.pipe';
 import { ManagerSubjectsComponent } from './app/ManagerSubjects/ManagerSubjects.component';
 import { ManagerClassRoomComponent } from './app/ManagerClassRoom/ManagerClassRoom.component';
 import { ManagerAccountComponent } from './app/ManagerAccount/ManagerAccount.component';
-import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { RegisterComponent } from './authen/Register/Register.component';
 
 @NgModule({
     declarations: [
@@ -49,7 +51,8 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
         ManagerClassRoomComponent,
         ManagerAccountComponent,
         NavBarComponent,
-        FilterPipe
+        FilterPipe,
+        RegisterComponent
     ],
     providers: [DatePipe],
     bootstrap: [AppComponent],
@@ -70,7 +73,8 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
         NgxTippyModule,
         ConfirmPopupModule,
         SplitButtonModule,
-        NgbDropdownModule
+        NgbDropdownModule,
+        RadioButtonModule
     ]
 })
 export class AppModule {}

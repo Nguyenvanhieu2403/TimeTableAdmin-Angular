@@ -47,6 +47,8 @@ export class ManagerAccountComponent implements OnInit {
       this.classes.forEach((element: any) => {
           element.NumericalOrder = i++;
           element.dateOfBirth = this.datePipe.transform(element.dateOfBirth, 'dd/MM/yyyy');
+          element.modifiedDate = this.datePipe.transform(element.modifiedDate, 'dd/MM/yyyy');
+          element.createdDate = this.datePipe.transform(element.createdDate, 'dd/MM/yyyy');
       });
     });
   }
@@ -308,6 +310,67 @@ export class ManagerAccountComponent implements OnInit {
         reject: () => {
             this.toastr.warning("Hành động đã bị hủy", "Hủy bỏ");
         }
+    });
+  }
+
+  ExportExcel() {
+    import("xlsx").then(xlsx => {
+      const json = this.classes.map(item => ({
+        "STT": item.NumericalOrder,
+        "Họ": item.firstName,
+        "Tên": item.lastName,
+        "Họ và Tên": item.fullName,
+        "Tên đăng nhập": item.userName,
+        "Email": item.email,
+        "Số điện thoại": "0" + item.phone,
+        "Chức vụ": item.type === 'TG'? "Thỉnh giảng": "Cơ hữu",
+        "Giới tính": item.gender === 1 ? 'Nam' : 'Nữ',
+        "Ngày sinh": item.dateOfBirth,
+        "Trạng thái": item.usedState === 0 ? "Đang hoạt động": "Đã khóa",
+        "Mô tả": item.description,
+        "Ảnh đại diện": item.avata,
+        "Người tạo": (this.classes.find(x => x.id === item.createdBy) || {fullName: ''}).fullName,
+        "Ngày tạo": item.createdDate,
+        "Người sửa": (this.classes.find(x => x.id === item.modifiedBy) || {fullName: ''}).fullName,
+        "Ngày sửa": item.modifiedDate
+      }));
+      const worksheet = xlsx.utils.json_to_sheet(json, 
+        { 
+          header: [
+            "STT",
+            "Họ",
+            "Tên",
+            "Họ và Tên",
+            "Tên đăng nhập",
+            "Email",
+            "Số điện thoại",
+            "Chức vụ",
+            "Giới tính",
+            "Ngày sinh",
+            "Trạng thái",
+            "Mô tả",
+            "Ảnh đại diện",
+            "Người tạo",
+            "Ngày tạo",
+            "Người sửa",
+            "Ngày sửa"
+          ]
+        }
+      );
+      const workbook = { Sheets: { data: worksheet }, SheetNames: ["data"] };
+      const excelBuffer: any = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
+      this.saveAsExcelFile(excelBuffer, "Danh sách tài khoản");
+    });
+  }
+
+  saveAsExcelFile(buffer: any, fileName: string): void {
+    import("file-saver").then(FileSaver => {
+      let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+      let EXCEL_EXTENSION = '.xlsx';
+      const data: Blob = new Blob([buffer], {
+        type: EXCEL_TYPE
+      });
+      FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
     });
   }
 

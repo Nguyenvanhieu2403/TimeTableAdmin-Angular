@@ -27,6 +27,10 @@ export class ScheduleAllComponent implements OnInit {
   pageChange(event: { first: number; rows: number; }) {
     this.first = event.first;
     this.rows = event.rows;
+  }
+
+  rowStyleClass(rowData: any, rowIndex: number): string {
+    return rowIndex % 2 === 0 ? 'striped-even' : 'striped-odd';
 }
 
 }

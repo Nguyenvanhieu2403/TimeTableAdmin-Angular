@@ -55,7 +55,12 @@ export class AppComponent {
   }
 
   Logout(){
+    localStorage.removeItem("fullname");
+    localStorage.removeItem("avata");
+    localStorage.removeItem("email");
+    localStorage.removeItem("hasReloaded");
     localStorage.removeItem("login");
+    this.router.navigate(['/login']);
     this.toShow=false;
   }  
 }

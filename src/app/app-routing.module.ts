@@ -13,8 +13,18 @@ import { ManagerClassComponent } from './app/ManagerClass/ManagerClass.component
 import { ManagerSubjectsComponent } from './app/ManagerSubjects/ManagerSubjects.component';
 import { ManagerClassRoomComponent } from './app/ManagerClassRoom/ManagerClassRoom.component';
 import { ManagerAccountComponent } from './app/ManagerAccount/ManagerAccount.component';
+import { RegisterComponent } from './authen/Register/Register.component';
 
 const routes: Routes = [
+  {
+    path: 'login', component: LoginComponent,
+    children: [
+      {
+        path: 'login', loadChildren: () => import('./authen/Login/Login.module').then(m => m.LoginModule),
+      }
+    ],
+
+  },
   {
     path: '', component: LoginComponent,
     children: [
@@ -23,6 +33,9 @@ const routes: Routes = [
       }
     ],
 
+  },
+  {   
+    path: 'register', component: RegisterComponent,
   },
   {   
     path: 'index', component: IndexComponent,
@@ -60,6 +73,9 @@ const routes: Routes = [
   {
     path: 'ManagerAccount', component: ManagerAccountComponent,
   },
+  {
+    path:"*", component:IndexComponent
+  }
 
 ];
 

@@ -7,16 +7,16 @@
       </div>
       <div class="render_schedule">
         <p-table
-        [value]="schedules"
-        [paginator]="true"
-        [rows]="5"
-        [first]="first"
-        [showCurrentPageReport]="true"
-        [tableStyle]="{ 'min-width': '50rem' }"
-        currentPageReportTemplate="Hiển thị {first} tới {last} của {totalRecords} lịch học"
-        (onPage)="pageChange($event)"
-        [rowsPerPageOptions]="[10, 25, 50]"
-    >
+            [value]="schedules"
+            [paginator]="true"
+            [rows]="5"
+            [first]="first"
+            [showCurrentPageReport]="true"
+            [tableStyle]="{ 'min-width': '50rem' }"
+            currentPageReportTemplate="Hiển thị {first} tới {last} của {totalRecords} lịch học"
+            (onPage)="pageChange($event)"
+            [rowsPerPageOptions]="[10, 25, 50]"
+        >
         <ng-template pTemplate="header">
             <tr>
                 <th pSortableColumn="NumericalOrder" style="width:10%">
@@ -49,8 +49,8 @@
                 />
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-customer>
-            <tr>
+        <ng-template pTemplate="body" let-customer let-rowIndex="rowIndex">
+            <tr [ngClass]="{'striped-even': rowIndex % 2 === 0, 'striped-odd': rowIndex % 2 !== 0}">
                 <td>{{ customer.NumericalOrder }}</td>
                 <td>{{ customer.course_Code }}</td>
                 <td>{{ customer.fullName }}</td>
