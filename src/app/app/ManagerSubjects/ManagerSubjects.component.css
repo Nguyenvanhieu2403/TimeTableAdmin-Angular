@@ -5,3 +5,15 @@
 .actions {
     display: flex;
 }
+
+.striped-even {
+    background-color: #fff; /* Màu nền cho dòng chẵn */
+}
+
+.striped-odd {
+    background-color: #f1f5f6; /* Màu nền cho dòng lẻ */
+}
+
+.ng-invalid {
+    width: 100%;
+}

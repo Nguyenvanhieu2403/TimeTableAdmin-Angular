@@ -5,6 +5,32 @@
               <h1>Xem lịch giảng chưa đăng ký</h1>
           </div>
       </div>
+      <div class="col-md-12 m-3">
+        <div class="schedule__search row">
+            <div class="col-md-6">
+                <input  
+                    pInputText  
+                    class="ng-invalid ng-dirty" 
+                    name="search" 
+                    [(ngModel)]="searchText" 
+                    (ngModelChange)="filterClasses()" 
+                    autocomplete="off" 
+                    placeholder="  Tìm kiếm lớp học"
+                >
+            </div>
+            <div class="col-md-4">
+                <button 
+                    class=""
+                    pButton 
+                    pRipple 
+                    label="Xuất Excel" 
+                    class="p-button-success"
+                    (click)="ExportExcel()"
+                    >
+                </button>
+            </div>
+        </div>
+    </div>
       <div class="render_schedule">
         <p-table
         [value]="schedules"
@@ -49,8 +75,8 @@
                 />
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-customer>
-            <tr>
+        <ng-template pTemplate="body" let-customer let-rowIndex="rowIndex">
+            <tr [ngClass]="{'striped-even': rowIndex % 2 === 0, 'striped-odd': rowIndex % 2 !== 0}">
                 <td>{{ customer.NumericalOrder }}</td>
                 <td>{{ customer.course_Code }}</td>
                 <td>{{ customer.fullName ?? "Chưa có giảng viên đăng ký" }}</td>

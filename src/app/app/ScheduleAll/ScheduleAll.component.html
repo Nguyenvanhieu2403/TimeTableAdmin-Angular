@@ -1,10 +1,36 @@
 <div class=" Schedule" id="Schedule">
   <div class="schedule__body row">
-      <div class="col-md-9">
-          <div class="schedule__title">
-              <h1>Xem lịch giảng</h1>
-          </div>
-      </div>
+        <div class="col-md-9">
+            <div class="schedule__title">
+                <h1>Xem lịch giảng</h1>
+            </div>
+        </div>
+        <div class="col-md-12 m-3">
+            <div class="schedule__search row">
+                <div class="col-md-4 input-search">
+                    <input  
+                        pInputText  
+                        class="ng-invalid ng-dirty" 
+                        name="search" 
+                        [(ngModel)]="searchText" 
+                        (ngModelChange)="filterClasses()" 
+                        autocomplete="off" 
+                        placeholder="  Tìm kiếm tài khoản"
+                    >
+                </div>
+                <div class="col-md-4">
+                    <button 
+                        class=""
+                        pButton 
+                        pRipple 
+                        label="Xuất Excel" 
+                        class="p-button-success"
+                        (click)="ExportExcel()"
+                        >
+                    </button>
+                </div>
+            </div>
+        </div>
       <div class="render_schedule">
         <p-table
             [value]="schedules"

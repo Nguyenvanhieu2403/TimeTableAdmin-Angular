@@ -15,7 +15,7 @@
                         [(ngModel)]="searchText" 
                         (ngModelChange)="filter()" 
                         autocomplete="off" 
-                        placeholder="&#61442;  Tìm kiếm phòng học"
+                        placeholder="  Tìm kiếm phòng học"
                     >
                 </div>
                 <div class="col-md-4">
@@ -104,8 +104,8 @@
                 </th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-customer >
-            <tr>
+        <ng-template pTemplate="body" let-customer let-rowIndex="rowIndex">
+            <tr [ngClass]="{'striped-even': rowIndex % 2 === 0, 'striped-odd': rowIndex % 2 !== 0}">
                 <td>{{ customer.NumericalOrder }}</td>
                 <td>{{ customer.name }}</td>
                 <td>{{ customer.createDate }}</td>

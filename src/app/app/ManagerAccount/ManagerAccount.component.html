@@ -122,8 +122,8 @@
                 </th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-customer >
-            <tr>
+        <ng-template pTemplate="body" let-customer let-rowIndex="rowIndex">
+            <tr [ngClass]="{'striped-even': rowIndex % 2 === 0, 'striped-odd': rowIndex % 2 !== 0}">
                 <td>{{ customer.NumericalOrder }}</td>
                 <td>{{ customer.fullName }}</td>
                 <td>{{ customer.email }}</td>
