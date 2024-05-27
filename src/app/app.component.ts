@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
 import { Subject } from 'rxjs/internal/Subject';
@@ -20,7 +20,7 @@ export class AppComponent {
 
   private storageSub= new Subject<string>();
 
-  constructor(private router: Router) { 
+  constructor(private router: Router, private renderer: Renderer2) { 
   }
 
   watchStorage(): Observable<any> {
@@ -29,10 +29,9 @@ export class AppComponent {
   
 
   ngOnInit(){
-
     if(localStorage.getItem('login')!=null){
       this.toShow=true;
-      this.body = "col-md-9"
+      this.body = "col-12 col-lg-9 col-md-12 col-sm-12 position-relative"
     }
     else {
       this.toShow=false;
@@ -63,4 +62,24 @@ export class AppComponent {
     this.router.navigate(['/login']);
     this.toShow=false;
   }  
+  toggleNavbar() {
+    const navbar = document.querySelector('.container_navbar');
+    const leftSide = document.querySelector('.container_left_side');
+
+    if (navbar) {
+      if (navbar.classList.contains('active')) {
+        this.renderer.removeClass(navbar, 'active');
+      } else {
+        this.renderer.addClass(navbar, 'active');
+      }
+    }
+
+    if (leftSide) {
+      if (leftSide.classList.contains('d-none')) {
+        this.renderer.removeClass(leftSide, 'd-none');
+      } else {
+        this.renderer.addClass(leftSide, 'd-none');
+      }
+    }
+  }
 }

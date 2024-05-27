@@ -1,11 +1,14 @@
 
-<div class="navbar">
+<div class="">
     <div class="name">
         <div class="img">
             <img src="https://img.freepik.com/free-icon/user_318-159711.jpg" [src]="imgSrc"   alt="" class="img__user" id="img__user">
         </div>
         <div class="name__fullname">
             <p class="name__fullname--text" id="name__fullname--text">{{FullName??"User"}}</p>
+        </div>
+        <div class="close_navbar--icon flex-grow-1 d-flex justify-content-end d-lg-none pe-3">
+            <i class="pi pi-times" (click)="toggleNavbar()"></i>
         </div>
     </div>
     <div class="navbar__title">
