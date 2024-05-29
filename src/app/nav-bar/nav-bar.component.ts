@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-nav-bar',
@@ -17,7 +18,7 @@ export class NavBarComponent implements OnInit {
   imgSrc: any;
   FullName: any;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,private renderer: Renderer2) { }
 
   ngOnInit() {
     this.imgSrc = localStorage.getItem('avata');
@@ -94,5 +95,27 @@ export class NavBarComponent implements OnInit {
     this.router.navigate(['/login']);
     this.toShow=false;
   }  
+
+  // write func toggler
+  toggleNavbar() {
+    const navbar = document.querySelector('.container_navbar');
+    const leftSide = document.querySelector('.container_left_side');
+
+    if (navbar) {
+      if (navbar.classList.contains('active')) {
+        this.renderer.removeClass(navbar, 'active');
+      } else {
+        this.renderer.addClass(navbar, 'active');
+      }
+    }
+
+    if (leftSide) {
+      if (leftSide.classList.contains('d-none')) {
+        this.renderer.removeClass(leftSide, 'd-none');
+      } else {
+        this.renderer.addClass(leftSide, 'd-none');
+      }
+    }
+  }
 
 }

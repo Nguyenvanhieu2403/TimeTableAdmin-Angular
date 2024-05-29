@@ -1,93 +1,69 @@
 <div class="Schedule" id="Schedule">
-  <div class="schedule__body row">
-      <div class="col-md-9">
-          <div class="schedule__title">
-              <h1>Xem lịch giảng đã đăng ký</h1>
-          </div>
-      </div>
-      <div class="col-md-12 m-3">
-        <div class="schedule__search row">
-            <div class="col-md-6">
-                <input  
-                    pInputText  
-                    class="ng-invalid ng-dirty" 
-                    name="search" 
-                    [(ngModel)]="searchText" 
-                    (ngModelChange)="filterClasses()" 
-                    autocomplete="off" 
-                    placeholder="  Tìm kiếm lớp học"
-                >
-            </div>
-            <div class="col-md-4">
-                <button 
-                    class=""
-                    pButton 
-                    pRipple 
-                    label="Xuất Excel" 
-                    class="p-button-success"
-                    (click)="ExportExcel()"
-                    >
-                </button>
+    <div class="schedule__body row">
+        <div class="col-md-9">
+            <div class="schedule__title">
+                <h1>Xem lịch giảng đã đăng ký</h1>
             </div>
         </div>
+        <div class="col-md-12">
+            <div class="schedule__search row">
+                <div class="col-md-6">
+                    <input pInputText class="ng-invalid ng-dirty" name="search" [(ngModel)]="searchText"
+                        (ngModelChange)="filterClasses()" autocomplete="off" placeholder="  Tìm kiếm lớp học">
+                </div>
+                <div class="col-md-4">
+                    <button class="" pButton pRipple label="Xuất Excel" class="p-button-success"
+                        (click)="ExportExcel()">
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="render_schedule">
+            <p-table [value]="schedules" [paginator]="true" [rows]="5" [first]="first" [showCurrentPageReport]="true"
+                [tableStyle]="{ 'min-width': '50rem' }"
+                currentPageReportTemplate="Hiển thị {first} tới {last} của {totalRecords} lịch học"
+                (onPage)="pageChange($event)" [rowsPerPageOptions]="[10, 25, 50]">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th pSortableColumn="NumericalOrder" style="width:10%">
+                            STT
+                            <p-sortIcon field="NumericalOrder" />
+                        </th>
+                        <th pSortableColumn="course_Code" style="width:10%">
+                            Mã môn học
+                            <p-sortIcon field="course_Code" />
+                        <th pSortableColumn="fullName" style="width:15%">
+                            Tên giảng viên
+                            <p-sortIcon field="fullName" />
+                        <th pSortableColumn="lopHoc" style="width:15%">
+                            Lớp học
+                            <p-sortIcon field="lopHoc" />
+                        </th>
+                        <th pSortableColumn="phongHoc" style="width:15%">
+                            Phòng học
+                            <p-sortIcon field="phongHoc" />
+                        </th>
+                        <th pSortableColumn="monHoc" style="width:15%">
+                            Môn học
+                            <p-sortIcon field="monHoc" />
+                        <th pSortableColumn="lichHocTongList" style="width:25%">
+                            Lịch học
+                            <p-sortIcon field="lichHocTongList" />
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-customer let-rowIndex="rowIndex">
+                    <tr [ngClass]="{'striped-even': rowIndex % 2 === 0, 'striped-odd': rowIndex % 2 !== 0}">
+                        <td>{{ customer.NumericalOrder }}</td>
+                        <td>{{ customer.course_Code }}</td>
+                        <td>{{ customer.fullName ?? "Chưa có giảng viên đăng ký" }}</td>
+                        <td>{{ customer.lopHoc }}</td>
+                        <td>{{ customer.phongHoc }}</td>
+                        <td>{{ customer.monHoc }}</td>
+                        <td>{{ customer.lichHocTongList }}</td>
+                    </tr>
+                </ng-template>
+
+            </p-table>
+        </div>
     </div>
-      <div class="render_schedule">
-        <p-table
-        [value]="schedules"
-        [paginator]="true"
-        [rows]="5"
-        [first]="first"
-        [showCurrentPageReport]="true"
-        [tableStyle]="{ 'min-width': '50rem' }"
-        currentPageReportTemplate="Hiển thị {first} tới {last} của {totalRecords} lịch học"
-        (onPage)="pageChange($event)"
-        [rowsPerPageOptions]="[10, 25, 50]"
-    >
-        <ng-template pTemplate="header">
-            <tr>
-                <th pSortableColumn="NumericalOrder" style="width:10%">
-                    STT
-                    <p-sortIcon field="NumericalOrder" />
-                </th>
-                <th pSortableColumn="course_Code"  style="width:10%">
-                    Mã môn học
-                    <p-sortIcon field="course_Code" 
-                />
-                <th pSortableColumn="fullName"  style="width:15%">
-                    Tên giảng viên
-                    <p-sortIcon field="fullName" 
-                />
-                <th pSortableColumn="lopHoc"  style="width:15%">
-                    Lớp học
-                    <p-sortIcon field="lopHoc" />
-                </th>
-                <th pSortableColumn="phongHoc"  style="width:15%">
-                    Phòng học
-                    <p-sortIcon field="phongHoc" />
-                </th>
-                <th pSortableColumn="monHoc"  style="width:15%">
-                    Môn học
-                    <p-sortIcon field="monHoc" 
-                />
-                <th pSortableColumn="lichHocTongList"  style="width:25%">
-                    Lịch học
-                    <p-sortIcon field="lichHocTongList" 
-                />
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-customer let-rowIndex="rowIndex">
-            <tr [ngClass]="{'striped-even': rowIndex % 2 === 0, 'striped-odd': rowIndex % 2 !== 0}">
-                <td>{{ customer.NumericalOrder }}</td>
-                <td>{{ customer.course_Code }}</td>
-                <td>{{ customer.fullName ?? "Chưa có giảng viên đăng ký" }}</td>
-                <td>{{ customer.lopHoc }}</td>
-                <td>{{ customer.phongHoc }}</td>
-                <td>{{ customer.monHoc }}</td>
-                <td>{{ customer.lichHocTongList }}</td>
-            </tr>
-        </ng-template>
-         
-    </p-table>
-      </div>
-  </div>
 </div>

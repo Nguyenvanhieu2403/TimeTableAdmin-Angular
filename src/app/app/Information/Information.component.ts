@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Renderer2  } from '@angular/core';
 import { InformationService } from './Information.service';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { ToastrService } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
 
@@ -20,7 +21,7 @@ export class InformationComponent implements OnInit {
   emailFill: any;
   pipe: any;
 
-  constructor(private inforService: InformationService, private toastr: ToastrService) { 
+  constructor(private inforService: InformationService, private toastr: ToastrService, private renderer: Renderer2) { 
     this.email = localStorage.getItem('email');
     this.pipe = new DatePipe('en-US')
   }
@@ -43,5 +44,4 @@ export class InformationComponent implements OnInit {
       }
     });
   }
-
 }
