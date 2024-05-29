@@ -93,3 +93,16 @@
     text-decoration: none;
     color: #fff;
 }
+
+/*  */
+.active svg {
+    color: #33b5e5;
+}
+
+.active a {
+    color: #33b5e5;
+}
+
+.active span a {
+    color: #33b5e5;
+}

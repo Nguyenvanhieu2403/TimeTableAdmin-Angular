@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LectureScheduleService } from './LectureSchedule.service';
 import { DatePipe } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
+import { count } from 'rxjs';
 
 @Component({
   selector: 'app-LectureSchedule',
@@ -25,11 +26,12 @@ export class LectureScheduleComponent implements OnInit {
     first = 0;
     rows = 10;
 
+    currenDate: any
+
 
     constructor(private lectureService: LectureScheduleService, private datePipe: DatePipe, private toastr: ToastrService ) { }
 
     ngOnInit() {
-        
     }
 
     showClass() {
@@ -164,10 +166,24 @@ export class LectureScheduleComponent implements OnInit {
             this.toastr.error('Vui lòng chọn ngày kết thúc');
             return;
         }
+        let Count = localStorage.getItem('count')
+        let CountNumber = 0
+        if(Count == null){
+            localStorage.setItem('count', '0');
+        }
+        else {
+            CountNumber = parseInt(Count);
+            CountNumber++;
+            localStorage.setItem('count', CountNumber.toString());
+        }
+
+        this.currenDate = new Date();
 
         let model = {
             dateStart:this.dateStart,
             dateEnd: this.dateEnd,
+            dateCreate: this.currenDate,
+            Count: CountNumber,
             idclasses: this.classesId,
             idclassRooms: this.classRoomId,
             idsubjects: this.subjectsId
@@ -175,7 +191,7 @@ export class LectureScheduleComponent implements OnInit {
         this.lectureService.postSchedule(model).subscribe((res: any) => {
             if (res.statusCode == 200) {
                 this.toastr.success('Thực hiện thành công');
-                this.lectureService.getSchedule(1,999).subscribe((res: any) => {
+                this.lectureService.getSchedule(1,999, CountNumber).subscribe((res: any) => {
                     this.schedules = res.result;
                     let i = 1;
                     this.schedules.forEach((element: any) => {
