@@ -35,7 +35,7 @@ export class AppComponent {
     }
     else {
       this.toShow=false;
-      this.body = "col-md-12"
+      this.body = "col-md-12 p-0"
     }
   }
 
