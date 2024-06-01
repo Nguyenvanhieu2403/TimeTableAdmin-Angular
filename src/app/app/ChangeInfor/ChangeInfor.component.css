@@ -39,3 +39,11 @@
 .infor__list--lastName input  {
     width: 100%;
 }
+
+.account__infor--email {
+    padding: 0 12px;
+}
+
+.account__infor--email__text {
+    padding-left: 3px;
+}

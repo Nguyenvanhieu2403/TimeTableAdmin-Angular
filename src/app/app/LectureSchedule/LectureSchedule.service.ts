@@ -36,8 +36,8 @@ export class LectureScheduleService {
   }
 
   // Lấy thông tin lịch chưa đăng ký
-  getSchedule(pageIndex: any, pageSize: any){
-    const apiUrl = `${this.environment}/LectureSchedule/Registered_Calendar?pageIndex=${pageIndex}&pageSize=${pageSize}&check=${0}&Name=${'string'}`;
+  getSchedule(pageIndex: any, pageSize: any, Count: any){
+    const apiUrl = `${this.environment}/LectureSchedule/CalendarJustArranged?pageIndex=${pageIndex}&pageSize=${pageSize}&check=${0}&Name=${'string'}&Count=${Count}`;
     return this._http.get(apiUrl);
   }
 

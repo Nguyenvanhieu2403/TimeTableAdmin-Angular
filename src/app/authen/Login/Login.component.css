@@ -1,123 +1,263 @@
-* {
-    margin: 0;
-    padding: 0;
-}
-
-.container-login img {
-    width: 1536px;
-    height: 735px;
-}
-
-.container-login {
+.body {
     background-image: url('https://eaut.edu.vn/wp-content/uploads/2022/09/dai-hoc-cong-nghe-Dong-a.png');
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
-    height: 100vh;
+    height: 100%;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
 }
 
 .body_login {
-    background-color: rgba(0,0,0,.5);
-    position: absolute;
-    top: 16%;
-    right: 10%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    margin: 10px 60px;
-    padding-bottom: 50px;
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 30%;
+    width: 100%;
 }
 
 .title {
-    text-transform: uppercase;
-    color: #fff;
-    padding: 20px 0;
-    font-size: 2.6rem;
+    font-size: 24px;
+    margin-bottom: 20px;
 }
 
-.input {
-    display: flex;
-    flex-direction: column;
-    font-size: 1.2rem;
+.input p {
+    position: relative;
+    margin-bottom: 15px;
 }
 
-.input p svg {
+.input svg {
     position: absolute;
-    margin-top: 28px;
-    margin-left: 10px;
-    color: #fff;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 10px;
 }
 
-.username {
-    height: 30px;
-    width: 280px;
-    margin: 20px 0 0 0;
-    padding-left: 40px;
-    outline: none;
-    border: 1px solid #fff;
-    background-color: transparent;
-    color: #fff;
-    font-size: 1.2rem;
+.input input[type="text"], 
+.input input[type="password"] {
+    width: calc(100% - 30px);
+    padding: 10px 10px 10px 30px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
 }
 
-.password {
-    height: 30px;
-    width: 280px;
-    margin: 20px 0 10px 0;
-    padding-left: 40px;
-    outline: none;
-    border: 1px solid #fff;
-    background-color: transparent;
-    color: #fff;
-    font-size: 1.2rem;
+.checkbox__show--password {
+    text-align: left;
 }
 
-::placeholder { 
-    color: #fff;
-    opacity: 1; 
+.btn__login {
+    margin-top: 20px;
 }
 
-.checkbox__show--pasword {
-    color: #fff;
-    font-size: 1rem;
-    padding: 10px 0;
+.forgot__password,
+.register {
+    margin-top: 10px;
 }
 
-.btn__login button {
-    background-color: #18396f;
-    color: #fff;
-    width: 200px;
-    height: 50px;
-    font-size: 1.4rem;
-    border-radius: 10px;
-    outline: none;
-    border: none;
-    cursor: pointer;
-}
-
-.btn__login button:hover {
-    background-image: linear-gradient(to right, #3f6bb7, #2f5caf, #1b4497, #031c45);
-    box-shadow: 0 4px 15px 0 rgba(9, 53, 231, 0.75);
-}
-
-.forgot__password {
-    padding: 10px 0;
-}
-
-.forgot__password a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 1rem;
-}
-
+.forgot__password a,
 .register a {
-    color: #fff;
+    color: #007bff;
     text-decoration: none;
-    font-size: 1.2rem;
-    font-weight: 600;
 }
 
+.forgot__password a:hover,
 .register a:hover {
-    color: rgba(9, 53, 231, 0.75)
+    text-decoration: underline;
+}
+
+@media (max-width: 767px) {
+    .body_login {
+        margin: 0 10px;
+        padding: 20px;
+        max-width: 90%;
+    }
+
+    .input input[type="text"], 
+    .input input[type="password"] {
+        width: calc(100% - 20px);
+        padding: 10px 10px 10px 28px;
+    }
+
+    .input svg {
+        top: 50%;
+        transform: translateY(-50%);
+        left: 10px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .container-login {
+        height: 100vh;
+    }
+
+    .body_login {
+        padding: 30px;
+        max-width: 600px;
+    }
+
+    .title {
+        font-size: 28px;
+    }
+
+    .input input[type="text"], 
+    .input input[type="password"] {
+        width: calc(100%);
+        padding: 12px 12px 12px 30px;
+    }
+
+    .input svg {
+        top: 50%;
+        transform: translateY(-50%);
+        left: 10px;
+    }
+
+    .btn__login {
+        margin-top: 25px;
+    }
+
+    .forgot__password,
+    .register {
+        margin-top: 12px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .body_login {
+        padding: 20px;
+    }
+}
+
+/* Media query dành cho màn hình iPhone X hoặc các thiết bị có chiều rộng nhỏ hơn hoặc bằng 375px */
+@media (max-width: 375px) {
+    .body_login {
+        margin: 0 5px;
+        padding: 15px;
+        max-width: 90%;
+    }
+
+    .title {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    .input input[type="text"], 
+    .input input[type="password"] {
+        width: calc(100% - 15px);
+        padding: 8px 8px 8px 22px;
+    }
+
+    .input svg {
+        top: 50%;
+        transform: translateY(-50%);
+        left: 5px;
+    }
+
+    .btn__login {
+        margin-top: 15px;
+    }
+
+    .forgot__password,
+    .register {
+        margin-top: 8px;
+    }
+}
+
+/* Media query dành cho small tablets */
+@media (min-width: 600px) and (max-width: 767px) {
+    .container-login {
+        height: 100vh;
+    }
+
+    .body_login {
+        max-width: 90%;
+        padding: 25px;
+    }
+
+    .title {
+        font-size: 26px;
+    }
+
+    .input input[type="text"], 
+    .input input[type="password"] {
+        width: calc(100% - 25px);
+        padding: 12px 12px 12px 30px;
+    }
+
+    .input svg {
+        top: 50%;
+        transform: translateY(-50%);
+        left: 10px;
+    }
+
+    .btn__login {
+        margin-top: 25px;
+    }
+
+    .forgot__password,
+    .register {
+        margin-top: 12px;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1365px) {
+    .container-login {
+        padding: 20px;
+    }
+
+    .body_login {
+        padding: 20px;
+        max-width: 400px;
+    }
+
+    .title {
+        font-size: 32px;
+    }
+
+    .input input[type="text"], 
+    .input input[type="password"] {
+        width: calc(100%);
+        padding: 15px 15px 15px 40px;
+    }
+
+    .input svg {
+        top: 50%;
+        transform: translateY(-50%);
+        left: 15px;
+    }
+
+    .btn__login {
+        margin-top: 30px;
+    }
+
+    .forgot__password,
+    .register {
+        margin-top: 15px; /* Điều chỉnh lại khoảng cách giữa các phần tử */
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1440px) {
+    .body_login {
+        margin-left: 50%;
+    }
+}
+
+.forgot__password a,
+.register a {
+    color: black;
+    text-decoration: none;
+}
+
+.forgot__password:hover a,
+.register:hover a {
+    color: #007bff;
+    text-decoration: none;
 }

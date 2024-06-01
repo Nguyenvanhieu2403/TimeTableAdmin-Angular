@@ -1,94 +1,88 @@
 <div class="body">
-  <div class="container">
-      <img src="../../../assets/img/background_register.png" alt="">
-      <div class="body_register">
-          <div class="information">
-              <a href="./index.html">
-                <i class="pi pi-arrow-left"></i>
-              </a>
-              <h1 class="info">Nhập thông tin tài khoản</h1>
-          </div>
-          <div class="input">
-              <div class="input_account">
-                  <input type="text" class="account" [(ngModel)]="email" id="account" placeholder="Email" required>
-              </div>
-              <div class="input_password">
-                  <input type="password" class="password" [(ngModel)]="password" id="password" placeholder="Mật khẩu" required>
-              </div>
-              <div class="input_retype">
-                  <input type="password" class="retype" [(ngModel)]="confirmPassWord" id="confirmPassWord" placeholder="Nhập lại mật khẩu" required>
-              </div>
-              <div class="input_fullname">
-                  <input type="text" class="first__name" [(ngModel)]="first__name" id="first__name" placeholder="Họ " required>
-                  <input type="text" class="last__name" [(ngModel)]="last__name" id="last__name" placeholder="Tên" required>
-              </div>
-              <div class="birth_gender">
-                  <div class="input_birth">
-                      <input type="date" class="birth" [(ngModel)]="date" id="birth" placeholder="Ngày sinh" required>
-                  </div>
-                    <div class="input_gender flex flex-wrap gap-3">
-                        <div class="gender flex flex-wrap gap-3">
-                            <div class="flex align-items-center">
+    <div class="container background_register">
+        <div class="body_register">
+            <div class="information">
+                <a href="./index.html">
+                    <i class="pi pi-arrow-left"></i>
+                </a>
+                <h1 class="info">Nhập thông tin tài khoản</h1>
+            </div>
+            <div class="input">
+                <div class="input_account">
+                    <input type="text" class="account" [(ngModel)]="email" id="account" placeholder="Email" required>
+                </div>
+                <div class="input_password">
+                    <input type="password" class="password" [(ngModel)]="password" id="password" placeholder="Mật khẩu" required>
+                </div>
+                <div class="input_retype">
+                    <input type="password" class="retype" [(ngModel)]="confirmPassWord" id="confirmPassWord" placeholder="Nhập lại mật khẩu" required>
+                </div>
+                <div class="input_fullname">
+                    <input type="text" class="first__name" [(ngModel)]="first__name" id="first__name" placeholder="Họ " required>
+                    <input type="text" class="last__name" [(ngModel)]="last__name" id="last__name" placeholder="Tên" required>
+                </div>
+                <span class="dob">Ngày sinh</span>
+                <div class="birth_gender">
+                    <div class="input_birth">
+                        <input type="date" class="birth" [(ngModel)]="date" id="birth" placeholder="Ngày sinh" required>
+                    </div>
+                    <div class="input_gender">
+                        <div class="gender">
+                            <div class="gender_option">
                                 <p-radioButton 
                                     name="pizza" 
                                     value="0" 
                                     [(ngModel)]="genderNam" 
                                     inputId="ingredient1" />
-                                <label for="ingredient1" class="ml-2">
+                                <label for="ingredient1">
                                     Nam
                                 </label>
                             </div>
-                            
-                            <div class="flex align-items-center">
+                            <div class="gender_option ps-3">
                                 <p-radioButton 
                                     name="pizza" 
                                     value="1" 
                                     [(ngModel)]="genderNam" 
                                     inputId="ingredient2" />
-                                <label for="ingredient2" class="ml-2">
+                                <label for="ingredient2">
                                     Nữ
                                 </label>
                             </div>
                         </div>
                     </div>
-              </div>
-              <div class="input_phonenumber">
-                  <input type="text" class="phonenumber" [(ngModel)]="phonenumber" id="phonenumber" placeholder="Số điện thoại" required>
-              </div>
-              <div class="input_phonenumber m-3">
-                <div class="input_gender flex flex-wrap gap-3">
-                    <div class="gender flex flex-wrap gap-3">
-                        <div class="flex align-items-center">
-                            <p-radioButton 
-                                name="pizza" 
-                                value="TG" 
-                                [(ngModel)]="type" 
-                                inputId="ingredient1" />
-                            <label for="ingredient1" class="ml-2">
-                                Thỉnh giảng
-                            </label>
-                        </div>
-                        
-                        <div class="flex align-items-center">
-                            <p-radioButton 
-                                name="pizza" 
-                                value="CH" 
-                                [(ngModel)]="type" 
-                                inputId="ingredient2" />
-                            <label for="ingredient2" class="ml-2">
-                                Cơ hữu
-                            </label>
-                        </div>
+                </div>
+                <div class="input_phonenumber">
+                    <input type="text" class="phonenumber" [(ngModel)]="phonenumber" id="phonenumber" placeholder="Số điện thoại" required>
+                </div>
+                <div class="input_type">
+                    <div class="type_option">
+                        <p-radioButton 
+                            name="pizza" 
+                            value="TG" 
+                            [(ngModel)]="type" 
+                            inputId="ingredient3" />
+                        <label for="ingredient3">
+                            Thỉnh giảng
+                        </label>
+                    </div>
+                    <div class="type_option">
+                        <p-radioButton 
+                            name="pizza" 
+                            value="CH" 
+                            [(ngModel)]="type" 
+                            inputId="ingredient4" />
+                        <label for="ingredient4">
+                            Cơ hữu
+                        </label>
                     </div>
                 </div>
+                <div class="input_avatar">
+                    <input type="email" class="avatar" [(ngModel)]="avatar" id="avata" placeholder="Avatar">
+                </div>
+                <div class="but_register">
+                    <button class="register" type="submit" (click)="signin()">Hoàn tất đăng ký</button>
+                </div>
             </div>
-              <div class="input_email">
-                  <input type="email" class="email" [(ngModel)]="avatar" id="avata" placeholder="Avatar">
-              </div>
-              <div class="but_register">
-                  <button class="register" type="submit" (click)="signin()">Hoàn tất đăng ký</button>
-              </div>
-          </div>
-      </div>
-  </div>
+        </div>
+    </div>
 </div>
